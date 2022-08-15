@@ -18,14 +18,14 @@ public class Inventario {
                 return i;
             }
         }
-        return id;
+        return 0;
     }
 
     public String mostar(){
         Collections.sort(productos,new CompararId());
         String resultados="";
         for(Prodructo p:productos){
-            resultados = p.toString();
+            resultados+= p.toString()+"\n";
         }
         return resultados;
     }
@@ -37,18 +37,20 @@ public class Inventario {
        int idBuscar = buscarPorID(id);
        if(motivo){
            ventas.add(productos.get(idBuscar));
-           productos.get(idBuscar).setExistencia(productos.get(idBuscar).getExistencia()-1);
+           productos.get(idBuscar).setCantidad(productos.get(idBuscar).getCantidad()-1);
+           if(productos.get(idBuscar).getCantidad()<=0){
+               productos.get(idBuscar).setExistencia(0);
+           }
        }
        else{
            caducos.add(productos.get(idBuscar));
+           productos.get(idBuscar).setCantidad(0);
            productos.get(idBuscar).setExistencia(0);
        }
 
     }
 
-    public class CompararId implements Comparator<Prodructo> {
-        public int compare (Prodructo p1, Prodructo p2){
-            return p1.getId()-p2.getId();
-        }
+    public class CompararId implements Comparator<Prodructo> { public int compare (Prodructo p1, Prodructo p2){return p1.getId()-p2.getId(); }
+        public class CompararPrecio implements Comparator<Prodructo>{ public int compare (Prodructo p1, Prodructo p2){ return p1.getPrecio()-p2.getPrecio();}}
     }
 }

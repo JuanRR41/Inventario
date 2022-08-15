@@ -27,7 +27,7 @@ public class Main {
                     System.out.println("Escriba la descripcion:");
                     descripcion = auxs.nextLine();
                     System.out.println("Escriba la cantidad de productos:");
-                        cantidad =aux.nextInt();;
+                        cantidad =aux.nextInt();
                     System.out.println("Escriba el ID:");
                         id=aux.nextInt();
                     System.out.println("Escriba el costo:");
@@ -62,8 +62,6 @@ public class Main {
 
                 default:
                     System.out.println("No es una opción valida\n");
-                    op=4;
-
             }
         }while(op!=4);
     }

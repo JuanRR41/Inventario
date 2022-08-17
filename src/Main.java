@@ -1,67 +1,113 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Inventario inv = new Inventario();
-        Prodructo p;
-        int op=1;
+        Producto p;
+        int op;
         Scanner aux= new Scanner(System.in);
         Scanner auxs= new Scanner(System.in);
         do {
             System.out.println("¿Qué quiere hacer hoy?\n");
             System.out.println("1]Dar de alta.\n2]Dar de baja o reportar caducidad.\n3]Mostrar.\n4]Salir.");
             op=aux.nextInt();
-            switch(op){
-                case 1: int cantidad;
-                        int id;
-                        float costo;
-                        float precio;
-                        String nombre;
-                        String descripcion;
-                        String marca;
-
+            switch (op) {
+                case 1 -> {
+                    int cantidad;
+                    int id;
+                    int eP;
+                    float costo;
+                    float precio;
+                    String nombre;
+                    String descripcion;
+                    String marca;
                     System.out.println("Escriba el nombre:");
-                    nombre=auxs.nextLine();
+                    nombre = auxs.nextLine();
                     System.out.println("Escriba la marca:");
-                    marca=auxs.nextLine();
+                    marca = auxs.nextLine();
                     System.out.println("Escriba la descripcion:");
                     descripcion = auxs.nextLine();
                     System.out.println("Escriba la cantidad de productos:");
-                        cantidad =aux.nextInt();
+                    cantidad = aux.nextInt();
                     System.out.println("Escriba el ID:");
-                        id=aux.nextInt();
+                    id = aux.nextInt();
                     System.out.println("Escriba el costo:");
-                        costo=aux.nextInt();
+                    costo = aux.nextFloat();
                     System.out.println("Escriba el precio:");
-                        precio=aux.nextInt();
-                        p = new Prodructo(nombre,descripcion,marca,cantidad,1,id,costo,precio);
-                        inv.darAlta(p);
-                        break;
-
-                case 2: int idDarBaja;
-                        int motivoN=0;
-                        boolean motivo=false;
-                    System.out.println("Escriba el ID:");
-                        idDarBaja=aux.nextInt();
-                    System.out.println("¿Motivo?\n1]Venta.\n2]Caducidad.\n");
-                        motivoN=aux.nextInt();
-                        if(motivoN==1){
-                            motivo=true;
+                    precio = aux.nextFloat();
+                    System.out.println("Eliga el tipo de producto que es:\n1]Producto Normal.\n2]Producto Alimento.\n3]Producto de limpieza.");
+                    eP = aux.nextInt();
+                    switch (eP) {
+                        case 1 -> {
+                            p = new Producto(nombre, descripcion, marca, cantidad, 1, id, costo, precio);
+                            inv.darAlta(p);
                         }
-                        else motivo=false;
-                        inv.darBaja(idDarBaja,motivo);
-                        break;
-
-                case 3:
-                    System.out.println(inv.mostar());
-                        break;
-
-                case 4:
-                    System.out.println("Gracias.");
-                        break;
-
-                default:
-                    System.out.println("No es una opción valida\n");
+                        case 2 -> {
+                            int tA;
+                            int calorias;
+                            Date caducidad;
+                            String tipo;
+                            System.out.println("Escriba las calorias:");
+                            calorias = aux.nextInt();
+                            System.out.println("Escriba la fecha de caducidad(Escribalo de la siguiente forma DD/MM/YYYY:");
+                            String fechaComoTexto = aux.nextLine();
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                            caducidad = sdf.parse(fechaComoTexto);
+                            System.out.println("Escriba el tipo de producto que es:");
+                            tipo = aux.nextLine();
+                            System.out.println("¿Es una bebida?:1]Si.\n2]No.");
+                            tA = aux.nextInt();
+                            if (tA == 1) {
+                                float ml;
+                                System.out.println("Escriba la cantidad de ml que tiene:");
+                                ml = aux.nextFloat();
+                                ProductoBebida pB = new ProductoBebida(nombre, descripcion, marca, cantidad, 1, id, costo, precio, calorias, caducidad, tipo, ml);
+                                inv.darAlta(pB);
+                            } else if (tA == 2) {
+                                ProductoAlimento pA = new ProductoAlimento(nombre, descripcion, marca, cantidad, 1, id, costo, precio, calorias, caducidad, tipo);
+                                inv.darAlta(pA);
+                            }
+                        }
+                        case 3 -> {
+                            String presentacion;
+                            int cantidadDeKilos;
+                            System.out.println("Escriba el tipo de presentacion:");
+                            presentacion = aux.nextLine();
+                            System.out.println("Escriba la cantidad de kilos que tiene el producto:");
+                            cantidadDeKilos = aux.nextInt();
+                            ProductoLimpieza pL = new ProductoLimpieza(nombre, descripcion, marca, cantidad, 1, id, costo, precio, presentacion, cantidadDeKilos);
+                            inv.darAlta(pL);
+                        }
+                        default -> System.out.println("No ingreso una opción valida.");
+                    }
+                }
+                case 2 -> {
+                    int idDarBaja;
+                    int motivoN;
+                    boolean motivo;
+                    System.out.println("Escriba el ID:");
+                    idDarBaja = aux.nextInt();
+                    System.out.println("¿Motivo?\n1]Venta.\n2]Caducidad.\n");
+                    motivoN = aux.nextInt();
+                    if (motivoN == 1) {
+                        motivo = true;
+                    } else motivo = false;
+                    inv.darBaja(idDarBaja, motivo);
+                }
+                case 3 -> {
+                    int oM;
+                    System.out.println("¿Cómo desea buscar los productos?:\n1]Por Id.\n2]Por Precio.");
+                    oM = aux.nextInt();
+                    if (oM == 1)
+                        System.out.println(inv.mostrarPorId());
+                    else
+                        System.out.println(inv.mostrarPorPrecio());
+                }
+                case 4 -> System.out.println("Gracias.");
+                default -> System.out.println("No es una opción valida\n");
             }
         }while(op!=4);
     }

@@ -1,5 +1,5 @@
 
-public class Prodructo {
+public class Producto {
     String nombre;
     String descripcion;
     String marca;
@@ -9,7 +9,7 @@ public class Prodructo {
     float costo;
     float precio;
 
-    public Prodructo(String nombre, String descripcion, String marca, int cantidad, int existencia, int id, float costo, float precio) {
+    public Producto(String nombre, String descripcion, String marca, int cantidad, int existencia, int id, float costo, float precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.marca = marca;

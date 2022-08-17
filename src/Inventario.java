@@ -3,9 +3,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Inventario {
-    ArrayList<Prodructo> productos;
-    ArrayList<Prodructo> ventas;
-    ArrayList<Prodructo> caducos;
+    ArrayList<Producto> productos;
+    ArrayList<Producto> ventas;
+    ArrayList<Producto> caducos;
 
     public Inventario(){
         productos = new ArrayList();
@@ -21,16 +21,26 @@ public class Inventario {
         return 0;
     }
 
-    public String mostar(){
+    public String mostrarPorId(){
         Collections.sort(productos,new CompararId());
         String resultados="";
-        for(Prodructo p:productos){
+        for(Producto p:productos){
             resultados+= p.toString()+"\n";
         }
         return resultados;
     }
 
-    public void darAlta(Prodructo p){
+    public String mostrarPorPrecio(){
+        Collections.sort(productos,new CompararPrecio());
+        String resultados="";
+        for(Producto p:productos){
+            resultados+= p.toString()+"\n";
+        }
+        return resultados;
+    }
+
+
+    public void darAlta(Producto p){
         productos.add(p);
     }
     public void darBaja(int id, boolean motivo){
@@ -50,7 +60,7 @@ public class Inventario {
 
     }
 
-    public class CompararId implements Comparator<Prodructo> { public int compare (Prodructo p1, Prodructo p2){return p1.getId()-p2.getId(); }
-        public class CompararPrecio implements Comparator<Prodructo>{ public int compare (Prodructo p1, Prodructo p2){ return p1.getPrecio()-p2.getPrecio();}}
-    }
+    public class CompararId implements Comparator<Producto> { public int compare (Producto p1, Producto p2){return p1.getId()-p2.getId(); }}
+    public class CompararPrecio implements Comparator<Producto>{ public int compare (Producto p1, Producto p2){ return Float.compare(p1.getPrecio(),p2.getPrecio());}}
+
 }

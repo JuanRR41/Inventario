@@ -1,9 +1,11 @@
-public class ProductoLimpieza extends Prodructo{
+public class ProductoLimpieza extends Producto {
     private String presentacion;
-    private int cantidad;
+    private int cantidadDeKilos;
 
-    public ProductoLimpieza(String nombre, String descripcion, String marca, int cantidad, int existencia, int id, float costo, float precio) {
+    public ProductoLimpieza(String nombre, String descripcion, String marca, int cantidad, int existencia, int id, float costo, float precio,String presentacion,int cantidadDeKilos) {
         super(nombre, descripcion, marca, cantidad, existencia, id, costo, precio);
+        this.presentacion=presentacion;
+        this.cantidadDeKilos=cantidadDeKilos;
     }
 
     public String getPresentacion() {
@@ -14,11 +16,11 @@ public class ProductoLimpieza extends Prodructo{
         this.presentacion = presentacion;
     }
 
-    public int getCantidad() {
+    public int getCantidadDeKilos() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidadDeKilos(int cantidad) {
         this.cantidad = cantidad;
     }
 }

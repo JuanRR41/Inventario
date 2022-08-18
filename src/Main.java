@@ -12,7 +12,7 @@ public class Main {
         Scanner auxs= new Scanner(System.in);
         do {
             System.out.println("¿Qué quiere hacer hoy?\n");
-            System.out.println("1]Dar de alta.\n2]Dar de baja o reportar caducidad.\n3]Mostrar.\n4]Salir.");
+            System.out.println("1]Dar de alta.\n2]Dar de baja o reportar caducidad.\n3]Mostrar.\n4]Salir.\n5]LLENAR ARRAY RAPIDO.");
             op=aux.nextInt();
             switch (op) {
                 case 1 -> {
@@ -47,17 +47,17 @@ public class Main {
                         }
                         case 2 -> {
                             int tA;
-                            int calorias;
+                            float calorias;
                             Date caducidad;
                             String tipo;
                             System.out.println("Escriba las calorias:");
-                            calorias = aux.nextInt();
+                            calorias = aux.nextFloat();
                             System.out.println("Escriba la fecha de caducidad(Escribalo de la siguiente forma DD/MM/YYYY:");
-                            String fechaComoTexto = aux.nextLine();
+                            String fechaComoTexto = auxs.nextLine();
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                             caducidad = sdf.parse(fechaComoTexto);
                             System.out.println("Escriba el tipo de producto que es:");
-                            tipo = aux.nextLine();
+                            tipo = auxs.nextLine();
                             System.out.println("¿Es una bebida?:1]Si.\n2]No.");
                             tA = aux.nextInt();
                             if (tA == 1) {
@@ -73,11 +73,11 @@ public class Main {
                         }
                         case 3 -> {
                             String presentacion;
-                            int cantidadDeKilos;
+                            float cantidadDeKilos;
                             System.out.println("Escriba el tipo de presentacion:");
-                            presentacion = aux.nextLine();
+                            presentacion = auxs.nextLine();
                             System.out.println("Escriba la cantidad de kilos que tiene el producto:");
-                            cantidadDeKilos = aux.nextInt();
+                            cantidadDeKilos = aux.nextFloat();
                             ProductoLimpieza pL = new ProductoLimpieza(nombre, descripcion, marca, cantidad, 1, id, costo, precio, presentacion, cantidadDeKilos);
                             inv.darAlta(pL);
                         }
@@ -85,7 +85,7 @@ public class Main {
                     }
                 }
                 case 2 -> {
-                    int idDarBaja;
+                    int idDarBaja=0;
                     int motivoN;
                     boolean motivo;
                     System.out.println("Escriba el ID:");
@@ -107,6 +107,19 @@ public class Main {
                         System.out.println(inv.mostrarPorPrecio());
                 }
                 case 4 -> System.out.println("Gracias.");
+                case 5 -> {
+                    System.out.println("SE CREARA UN ARRAY CON DATOS YA LISTOS.");
+                    SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+                    Date cad = sd.parse("08/11/2022");
+                    Producto ejP= new Producto("Servilletas","Servilletas para casa","Charmin",40,1,4564,30,60);
+                    ProductoAlimento ejPA= new ProductoAlimento("Galletas","Galletas de chocolate","Gamesa",30,1,8943,8,16,220,cad,"Empaque");
+                    ProductoBebida ejPB= new ProductoBebida("Coca-Cola","Bebida de cola","Coca-Cola",60,1,6666,10,14,290,cad,"Botella de plastico",400);
+                    ProductoLimpieza ejL= new ProductoLimpieza("Jabon Zote","Jabon de ropa","Zote",40,1,2314,8,16,"Barra",1);
+                    inv.darAlta(ejP);
+                    inv.darAlta(ejPA);
+                    inv.darAlta(ejPB);
+                    inv.darAlta(ejL);
+                }
                 default -> System.out.println("No es una opción valida\n");
             }
         }while(op!=4);

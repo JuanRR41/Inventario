@@ -1,8 +1,8 @@
 public class ProductoLimpieza extends Producto {
     private String presentacion;
-    private int cantidadDeKilos;
+    private float cantidadDeKilos;
 
-    public ProductoLimpieza(String nombre, String descripcion, String marca, int cantidad, int existencia, int id, float costo, float precio,String presentacion,int cantidadDeKilos) {
+    public ProductoLimpieza(String nombre, String descripcion, String marca, int cantidad, int existencia, int id, float costo, float precio,String presentacion,float cantidadDeKilos) {
         super(nombre, descripcion, marca, cantidad, existencia, id, costo, precio);
         this.presentacion=presentacion;
         this.cantidadDeKilos=cantidadDeKilos;

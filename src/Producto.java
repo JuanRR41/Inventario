@@ -21,7 +21,7 @@ public class Producto {
     }
 
     public String toString() {
-        return  "Nombre:" + nombre + "\nDescripcion:" + descripcion + "\nMarca:" + marca +"\nCantidad:" + cantidad +"\nExistencia:" + existencia + "\nID:" + id + "\nCosto:" + costo + "\nPrecio:" + precio;
+        return  "Nombre:" + nombre + "\nDescripcion:" + descripcion + "\nMarca:" + marca +"\nCantidad:" + cantidad +"\nExistencia:" + existencia + "\nID:" + id + "\nCosto:" + costo + "\nPrecio:" + precio + "\n-------";
     }
 
     public String getNombre() {

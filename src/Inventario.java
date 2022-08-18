@@ -8,17 +8,19 @@ public class Inventario {
     ArrayList<Producto> caducos;
 
     public Inventario(){
-        productos = new ArrayList();
-        ventas = new ArrayList();
-        caducos = new ArrayList();
+        productos = new ArrayList<>();
+        ventas = new ArrayList<>();
+        caducos = new ArrayList<>();
     }
-    public int buscarPorID(int id) {
-        for (int i = 0; i > productos.size(); i++) {
-            if (id == productos.get(i).getId()) {
-                return i;
+    public int buscarPorID(int idB) {
+        int aux=0;
+        for (int i=0; i<productos.size();i++) {
+            if (idB == productos.get(i).getId()) {
+                aux = i;
+                break;
             }
         }
-        return 0;
+        return aux;
     }
 
     public String mostrarPorId(){
@@ -43,8 +45,8 @@ public class Inventario {
     public void darAlta(Producto p){
         productos.add(p);
     }
-    public void darBaja(int id, boolean motivo){
-       int idBuscar = buscarPorID(id);
+    public void darBaja(int x, boolean motivo){
+       int idBuscar = buscarPorID(x);
        if(motivo){
            ventas.add(productos.get(idBuscar));
            productos.get(idBuscar).setCantidad(productos.get(idBuscar).getCantidad()-1);

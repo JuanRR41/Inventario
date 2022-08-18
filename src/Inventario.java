@@ -12,13 +12,15 @@ public class Inventario {
         ventas = new ArrayList();
         caducos = new ArrayList();
     }
-    public int buscarPorID(int id) {
-        for (int i = 0; i > productos.size(); i++) {
-            if (id == productos.get(i).getId()) {
-                return i;
+    public int buscarPorID(int idB) {
+        int aux=1;
+        for (int i=0; i<productos.size();i++) {
+            if (idB == productos.get(i).getId()) {
+                aux = i;
+                break;
             }
         }
-        return 0;
+        return aux;
     }
 
     public String mostrarPorId(){

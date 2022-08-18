@@ -12,7 +12,7 @@ public class Main {
         Scanner auxs= new Scanner(System.in);
         do {
             System.out.println("¿Qué quiere hacer hoy?\n");
-            System.out.println("1]Dar de alta.\n2]Dar de baja o reportar caducidad.\n3]Mostrar.\n4]Salir.");
+            System.out.println("1]Dar de alta.\n2]Dar de baja o reportar caducidad.\n3]Mostrar.\n4]Salir.\n5]LLENAR ARRAY RAPIDO.");
             op=aux.nextInt();
             switch (op) {
                 case 1 -> {
@@ -85,7 +85,7 @@ public class Main {
                     }
                 }
                 case 2 -> {
-                    int idDarBaja;
+                    int idDarBaja=0;
                     int motivoN;
                     boolean motivo;
                     System.out.println("Escriba el ID:");
@@ -107,6 +107,19 @@ public class Main {
                         System.out.println(inv.mostrarPorPrecio());
                 }
                 case 4 -> System.out.println("Gracias.");
+                case 5 -> {
+                    System.out.println("SE CREARA UN ARRAY CON DATOS YA LISTOS.");
+                    SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+                    Date cad = sd.parse("08/11/2022");
+                    Producto ejP= new Producto("Servilletas","Servilletas para casa","Charmin",40,1,4564,30,60);
+                    ProductoAlimento ejPA= new ProductoAlimento("Galletas","Galletas de chocolate","Gamesa",30,1,8943,8,16,220,cad,"Empaque");
+                    ProductoBebida ejPB= new ProductoBebida("Coca-Cola","Bebida de cola","Coca-Cola",60,1,6666,10,14,290,cad,"Botella de plastico",400);
+                    ProductoLimpieza ejL= new ProductoLimpieza("Jabon Zote","Jabon de ropa","Zote",40,1,2314,8,16,"Barra",1);
+                    inv.darAlta(ejP);
+                    inv.darAlta(ejPA);
+                    inv.darAlta(ejPB);
+                    inv.darAlta(ejL);
+                }
                 default -> System.out.println("No es una opción valida\n");
             }
         }while(op!=4);

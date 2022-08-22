@@ -23,6 +23,10 @@ public class Inventario {
         return aux;
     }
 
+    public void mostarArticuloPorId(int bId){
+        System.out.println(productos.get(bId).toString());
+    }
+
     public String mostrarPorId(){
         Collections.sort(productos,new CompararId());
         String resultados="";
@@ -62,7 +66,10 @@ public class Inventario {
 
     }
 
-    public class CompararId implements Comparator<Producto> { public int compare (Producto p1, Producto p2){return p1.getId()-p2.getId(); }}
-    public class CompararPrecio implements Comparator<Producto>{ public int compare (Producto p1, Producto p2){ return Float.compare(p1.getPrecio(),p2.getPrecio());}}
+    public class CompararId implements Comparator<Producto>
+    { public int compare (Producto p1, Producto p2){return p1.getId()-p2.getId(); }}
+    public class CompararPrecio implements Comparator<Producto>
+    { public int compare (Producto p1, Producto p2)
+    { return Float.compare(p1.getPrecio(),p2.getPrecio());}}
 
 }
